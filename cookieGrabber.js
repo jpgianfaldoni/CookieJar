@@ -4,21 +4,19 @@ const delay = ms => new Promise(res => setTimeout(res, ms));
 const getConnections = async () => {
     await delay(100);
     var countReqs = window.performance.getEntriesByType("resource").length;
-    alert(countReqs.toString() + " requests made by this page!")
+    return countReqs;
 }
 
 
 function grabCookies(){
     let cookies = document.cookie;
     const cArr = decodeURIComponent(cookies).split(';');
-    alert("Found " + cArr.length.toString() + " cookies!");
+    return cArr.length;
 }
 
 function isCanvasFingerprinting(){
     let arr = document.querySelectorAll("canvas");
-    if (arr.length > 0){
-        alert("Possible canvas fingerprinting!");
-    }
+    return arr.length;
 }
 
 
@@ -32,7 +30,7 @@ function showLocalStorage(){
         _xLen = ((localStorage[_x].length + _x.length) * 2);
         _lsTotal += _xLen;
     };
-    alert("Local Storage = " + (_lsTotal / 1024).toFixed(2) + " KB");
+    return (_lsTotal / 1024).toFixed(2);
 }
 
 function getExternalConnections(){
@@ -47,12 +45,26 @@ function getExternalConnections(){
                 nExternalConnections ++
             }
         }
-    alert("N of external connections: " + nExternalConnections)
+    return (nExternalConnections);
 }
 
+const hidePage = `body > :not(.cookie-grabber) {
+    display: none;
+  }`;
 
-getConnections();
-grabCookies();
-isCanvasFingerprinting();
-showLocalStorage();
-getExternalConnections();
+// var conn = getConnections();
+var cook = grabCookies();
+var canv = isCanvasFingerprinting();
+var locs = showLocalStorage();
+var conn = getExternalConnections();
+
+// button = document.createElement('div');
+// button.style.display = 'absolute';
+// button.style.position = ''
+
+const rootCookieGrabber = document.createElement('div');
+rootCookieGrabber.classList.add('cookie-grabber');
+
+document.getElementsByTagName("BODY")[0].prepend(rootCookieGrabber);
+
+alert("DEU: cookies=" + cook.toString() + ", possibleCanvas=" + canv.toString() + ", localStorage(KB)=" + locs.toString() + ", externalConnections=" + conn.toString());
