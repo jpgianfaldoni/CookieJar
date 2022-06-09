@@ -95,12 +95,12 @@ const scorePage = async () => {
     if (conn > 10) connColor = RED; else if (conn > 5) connColor = YELLOW; else connColor = GREEN;
     
     const rootCookieGrabber = document.createElement('div');
-    rootCookieGrabber.innerHTML =   '<div style="display:flex;margin:1rem;justify-content:center;z-index:100; position: relative;">'+
-                                    '<h3 style="margin: 1rem;background-color:' + cookColor + '";>Cookies: '+ cook +
-                                    '<h3 style="margin: 1rem;background-color:' + csizColor + '">Cookies (Bytes): '+ csiz +
-                                    '</h3><h3 style="margin: 1rem;background-color:' + canvColor + '">Canvas Fingerprinting: '+ Boolean(canv) +
-                                    '</h3><h3 style="margin: 1rem;background-color:' + locsColor + '">Local Storage (KB): '+ locs*1000 + 
-                                    '</h3><h3 style="margin: 1rem;background-color:' + connColor + '">External Connections: ' + conn + 
+    rootCookieGrabber.innerHTML =   '<div style="display:flex;margin:1rem;justify-content:center;z-index:100000000; position: relative;background-color:black;border-radius:1rem;padding:0.5rem;">'+
+                                    '<h3 style="margin: 1rem;background-color:' + cookColor + ';border-radius:1rem;padding:0.5rem;">Cookies: '+ cook +
+                                    '<h3 style="margin: 1rem;background-color:' + csizColor + ';border-radius:1rem;padding:0.5rem;">Cookies (Bytes): '+ csiz +
+                                    '</h3><h3 style="margin: 1rem;background-color:' + canvColor + ';border-radius:1rem;padding:0.5rem;">Canvas Fingerprinting: '+ Boolean(canv) +
+                                    '</h3><h3 style="margin: 1rem;background-color:' + locsColor + ';border-radius:1rem;padding:0.5rem;">Local Storage (KB): '+ locs*1000 + 
+                                    '</h3><h3 style="margin: 1rem;background-color:' + connColor + ';border-radius:1rem;padding:0.5rem;">External Connections: ' + conn + 
                                     '</div>';
 
     document.getElementsByTagName("BODY")[0].prepend(rootCookieGrabber);
