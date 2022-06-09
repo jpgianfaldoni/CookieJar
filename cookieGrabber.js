@@ -48,43 +48,33 @@ function getExternalConnections(){
     var originalUrl = window.location.origin
     var cleanUrl = originalUrl.replace(/^https?:\/\//, '').replace('www\.', '')
     var resourceList = window.performance.getEntries();
-    var nExternalConnections = 0 
+    var nExternalConnections = 0
+    var nExternalJs = 0
 
     for (i = 0; i < resourceList.length; i++)
         {
             if(!resourceList[i].name.includes(cleanUrl)){
                 nExternalConnections ++
+                if(resourceList[i].name.slice(-2) == 'js'){
+                    nExternalJs ++
+                }
             }
         }
-    return (nExternalConnections);
+    return {nExternalConnections, nExternalJs};
 }
 
-const hidePage = `body > :not(.cookie-grabber) {
-    display: none;
-  }`;
-
-// var conn = getConnections();
-var cook = grabCookies();
-var canv = isCanvasFingerprinting();
-var locs = showLocalStorage()/1000;
-var conn = getExternalConnections();
-var csiz = grabCookiesSize(); 
-
-// button = document.createElement('div');
-// button.style.display = 'absolute';
-// button.style.position = ''
-
-// function calc_score(cook, canv, locs, conn){
-//     let score = cook*4 + canv*20 + locs + conn*8;
-//     score /= 33;
-//     return 1/score*100;
-// }
-
 const scorePage = async () => {
-    await delay(5000);
+    await delay(3000);
+    var cook = grabCookies();
+    var canv = isCanvasFingerprinting();
+    var locs = showLocalStorage();
+    var conns = getExternalConnections();
+    var conn = conns.nExternalConnections;
+    var extJs = conns.nExternalJs;
+    var csiz = grabCookiesSize(); 
     // var score = calc_score(cook, canv, locs, conn);
     // var color = 'white';
-    var cookColor, csizColor, canvColor, locsColor, connColor;
+    var cookColor, csizColor, canvColor, locsColor, connColor, extJsColor;
     const GREEN = '#55ff55';
     const YELLOW = '#ffff14';
     const RED = '#e50000';
@@ -93,14 +83,16 @@ const scorePage = async () => {
     if (canv) canvColor = RED; else canvColor = GREEN;
     if (locs*1000 > 100) locsColor = RED; else if (locs*1000 > 20) locsColor = YELLOW; else locsColor = GREEN;
     if (conn > 10) connColor = RED; else if (conn > 5) connColor = YELLOW; else connColor = GREEN;
+    if (extJs > 5) extJsColor = RED; else if (conn > 3) extJsColor = YELLOW; else extJsColor = GREEN;
     
     const rootCookieGrabber = document.createElement('div');
     rootCookieGrabber.innerHTML =   '<div style="display:flex;margin:1rem;justify-content:center;z-index:100000000; position: relative;background-color:black;border-radius:1rem;padding:0.5rem;">'+
                                     '<h3 style="margin: 1rem;background-color:' + cookColor + ';border-radius:1rem;padding:0.5rem;">Cookies: '+ cook +
                                     '<h3 style="margin: 1rem;background-color:' + csizColor + ';border-radius:1rem;padding:0.5rem;">Cookies (Bytes): '+ csiz +
                                     '</h3><h3 style="margin: 1rem;background-color:' + canvColor + ';border-radius:1rem;padding:0.5rem;">Canvas Fingerprinting: '+ Boolean(canv) +
-                                    '</h3><h3 style="margin: 1rem;background-color:' + locsColor + ';border-radius:1rem;padding:0.5rem;">Local Storage (KB): '+ locs*1000 + 
+                                    '</h3><h3 style="margin: 1rem;background-color:' + locsColor + ';border-radius:1rem;padding:0.5rem;">Local Storage (KB): '+ locs + 
                                     '</h3><h3 style="margin: 1rem;background-color:' + connColor + ';border-radius:1rem;padding:0.5rem;">External Connections: ' + conn + 
+                                    '</h3><h3 style="margin: 1rem;background-color:' + extJsColor + ';border-radius:1rem;padding:0.5rem;">External Scripts: ' + extJs +  
                                     '</div>';
 
     document.getElementsByTagName("BODY")[0].prepend(rootCookieGrabber);
