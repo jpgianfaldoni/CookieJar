@@ -18,7 +18,7 @@ Abaixo alguns exemplos em sites famosos:
 
 ___
 Amazon.com
-![Amazon](docs\imgs\amazon.png)
+![Amazon](docs/imgs/amazon.png)
 
 Reddit.com
 ![Reddit](imgs\reddit.png)
