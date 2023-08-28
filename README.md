@@ -21,8 +21,8 @@ Amazon.com
 ![Amazon](docs/imgs/amazon.png)
 
 Reddit.com
-![Reddit](imgs\reddit.png)
+![Reddit](docs/imgs/reddit.png)
 
 Youtube.com
-![Youtube](imgs\youtube.png)
+![Youtube](docs/imgs/youtube.png)
 
