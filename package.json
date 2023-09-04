@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/jpgianfaldoni/CookieJar/issues"
   },
-  "homepage": "https://github.com/jpgianfaldoni/CookieJar#readme"
+  "homepage": "https://github.com/jpgianfaldoni/CookieJar#readme",
+  "devDependencies": {
+    "eslint": "^8.48.0"
+  }
 }
