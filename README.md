@@ -1,6 +1,6 @@
 # CookieJar
 
-https://jpgianfaldoni.github.io/CookieJar/
+Documentação: https://jpgianfaldoni.github.io/CookieJar/
 
 Instalação: https://support.mozilla.org/bm/questions/785686
 
