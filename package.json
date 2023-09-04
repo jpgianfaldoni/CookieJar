@@ -1,0 +1,22 @@
+{
+  "name": "cookiejar",
+  "version": "1.0.0",
+  "description": "Documentação: https://jpgianfaldoni.github.io/CookieJar/",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jpgianfaldoni/CookieJar.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jpgianfaldoni/CookieJar/issues"
+  },
+  "homepage": "https://github.com/jpgianfaldoni/CookieJar#readme"
+}
