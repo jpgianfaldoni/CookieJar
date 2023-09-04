@@ -1,5 +1,9 @@
 # CookieJar
 
+https://jpgianfaldoni.github.io/CookieJar/
+
+Instalação: https://support.mozilla.org/bm/questions/785686
+
 Plugin firefox para visualização de rastreamento online
 
 Exibe informações em cabeçalho preto, codificando em cores a gravidade de cada medida.
