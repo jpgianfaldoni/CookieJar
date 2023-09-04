@@ -16,7 +16,7 @@ const getConnections = async () => {
  * @constructor
  */
 function grabCookies() {
-  let cookies = document.cookie;
+  const cookies = document.cookie;
   const cArr = decodeURIComponent(cookies).split(";");
   return cArr.length;
 }
@@ -26,7 +26,7 @@ function grabCookies() {
  * @constructor
  */
 function grabCookiesSize() {
-  let cookies = document.cookie;
+  const cookies = document.cookie;
   const cArr = decodeURIComponent(cookies).split(";");
   var _lsTotal = 0,
     _xLen,
@@ -41,7 +41,7 @@ function grabCookiesSize() {
  * @constructor
  */
 function isCanvasFingerprinting() {
-  let arr = document.querySelectorAll("canvas");
+  const arr = document.querySelectorAll("canvas");
   return arr.length;
 }
 
@@ -92,15 +92,14 @@ function getExternalConnections() {
 
 const scorePage = async () => {
   await delay(3000);
-  var cook = grabCookies();
-  var canv = isCanvasFingerprinting();
-  var locs = showLocalStorage();
-  var conns = getExternalConnections();
-  var conn = conns.nExternalConnections;
-  var extJs = conns.nExternalJs;
-  var csiz = grabCookiesSize();
-  // var score = calc_score(cook, canv, locs, conn);
-  // var color = 'white';
+  const cook = grabCookies();
+  const canv = isCanvasFingerprinting();
+  const locs = showLocalStorage();
+  const conns = getExternalConnections();
+  const conn = conns.nExternalConnections;
+  const extJs = conns.nExternalJs;
+  const csiz = grabCookiesSize();
+
   var cookColor, csizColor, canvColor, locsColor, connColor, extJsColor;
   const GREEN = "#55ff55";
   const YELLOW = "#ffff14";
@@ -153,7 +152,6 @@ const scorePage = async () => {
     "</div>";
 
   document.getElementsByTagName("BODY")[0].prepend(rootCookieGrabber);
-  // alert("DEU: cookies=" + cook.toString() + ", possibleCanvas=" + canv.toString() + ", localStorage(KB)=" + locs.toString() + ", externalConnections=" + conn.toString());
 };
 
 scorePage();
