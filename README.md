@@ -2,7 +2,7 @@
 
 Documentação: https://jpgianfaldoni.github.io/CookieJar/
 
-Instalação: https://support.mozilla.org/bm/questions/785686
+Instalação: [https://support.mozilla.org/bm/questions/785686](https://firefox-source-docs.mozilla.org/devtools-user/about_colon_debugging/index.html)
 
 Plugin firefox para visualização de rastreamento online
 
