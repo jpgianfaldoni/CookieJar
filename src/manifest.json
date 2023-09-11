@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+  "name": "CookieJar",
+  "version": "1.0",
+
+  "description": "Adiciona uma borda vermelha a todas as páginas da Web correspondentes a mozilla.org.",
+
+  "icons": {
+    "48": "docs/icons/border-48.png"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "js": ["cookieGrabber.js"]
+    }
+  ]
+}
