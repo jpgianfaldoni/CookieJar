@@ -29,7 +29,6 @@ function grabCookiesSize() {
   const cookies = document.cookie;
   const cArr = decodeURIComponent(cookies).split(";");
   var _lsTotal = 0,
-    _xLen,
     _x;
   for (_x in cArr) {
     _lsTotal += _x.length * 2;
@@ -50,38 +49,35 @@ function isCanvasFingerprinting() {
  * @constructor
  */
 function showLocalStorage() {
-  var _lsTotal = 0,
-    _xLen,
-    _x;
-  for (_x in localStorage) {
-    if (!localStorage.hasOwnProperty(_x)) {
-      continue;
-    }
-    _xLen = (localStorage[_x].length + _x.length) * 2;
-    _lsTotal += _xLen;
+  let lsTotal = 0;
+  for (const [key, value] of Object.entries(localStorage)) {
+    const xLen = (value.length + key.length) * 2;
+    lsTotal += xLen;
   }
-  return (_lsTotal / 1024).toFixed(2);
+  return (lsTotal / 1024).toFixed(2);
 }
+
 
 /**
  * Get all the external connections made.
  * @constructor
  */
 function getExternalConnections() {
-  var originalUrl = window.location.origin;
-  var cleanUrl = originalUrl.replace(/^https?:\/\//, "").replace("www.", "");
-  var resourceList = window.performance.getEntries();
-  var nExternalConnections = 0;
-  var nExternalJs = 0;
+  const originalUrl = window.location.origin;
+  const cleanUrl = originalUrl.replace(/^https?:\/\//, "").replace("www.", "");
+  const resourceList = window.performance.getEntries();
+  let nExternalConnections = 0;
+  let nExternalJs = 0;
 
-  for (i = 0; i < resourceList.length; i++) {
-    if (!resourceList[i].name.includes(cleanUrl)) {
+  for (const resource of resourceList) {
+    if (!resource.name.includes(cleanUrl)) {
       nExternalConnections++;
-      if (resourceList[i].name.slice(-2) == "js") {
+      if (resource.name.endsWith("js")) {
         nExternalJs++;
       }
     }
   }
+
   return { nExternalConnections, nExternalJs };
 }
 
