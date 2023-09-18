@@ -2,7 +2,15 @@
 
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
-
+/**
+ * Get the number of connections made by the website.
+ * @constructor
+ */
+const getConnections = async () => {
+  await delay(100);
+  var countReqs = window.performance.getEntriesByType("resource").length;
+  return countReqs;
+};
 /**
  * Get the lenght of cookies array.
  * @constructor
